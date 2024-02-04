@@ -1,4 +1,4 @@
 Mars Photos
 ==================================
 
-Mars Photos app by Brian Menendez Lopez
+Mars Photos app by Brian Menendez Lopez y angel david
