@@ -18,7 +18,11 @@ package com.example.marsphotos.data
 import com.example.marsphotos.model.MarsPhoto
 import com.example.marsphotos.network.MarsApiService
 
+/**
+ * Repository that fetch mars photos list from marsApi.
+ */
 interface MarsPhotosRepository {
+    /** Fetches list of MarsPhoto from marsApi */
     suspend fun getMarsPhotos(): List<MarsPhoto>
 }
 

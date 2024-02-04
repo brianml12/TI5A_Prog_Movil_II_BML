@@ -24,6 +24,7 @@ import okhttp3.MediaType.Companion.toMediaType
 interface AppContainer {
     val marsPhotosRepository: MarsPhotosRepository
 }
+
 class DefaultAppContainer : AppContainer {
     private val baseUrl = "https://android-kotlin-fun-mars-server.appspot.com/"
 
