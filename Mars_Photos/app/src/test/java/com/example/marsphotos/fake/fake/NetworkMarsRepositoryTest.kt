@@ -1,4 +1,4 @@
-package com.example.marsphotos.fake
+package com.example.marsphotos.fake.fake
 
 import com.example.marsphotos.data.NetworkMarsPhotosRepository
 import junit.framework.TestCase.assertEquals
