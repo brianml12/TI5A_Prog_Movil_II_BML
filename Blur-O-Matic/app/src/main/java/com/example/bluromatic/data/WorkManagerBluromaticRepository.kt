@@ -28,6 +28,9 @@ import androidx.work.WorkManager
 import com.example.bluromatic.workers.BlurWorker
 import androidx.work.OneTimeWorkRequestBuilder
 import com.example.bluromatic.getImageUri
+import androidx.work.OneTimeWorkRequest
+import com.example.bluromatic.workers.CleanupWorker
+import com.example.bluromatic.workers.SaveImageToFileWorker
 
 class WorkManagerBluromaticRepository(context: Context) : BluromaticRepository {
 
@@ -42,11 +45,16 @@ class WorkManagerBluromaticRepository(context: Context) : BluromaticRepository {
     private val workManager = WorkManager.getInstance(context)
 
     override fun applyBlur(blurLevel: Int) {
+        var continuation = workManager.beginWith(OneTimeWorkRequest.from(CleanupWorker::class.java))
         // Create WorkRequest to blur the image
         val blurBuilder = OneTimeWorkRequestBuilder<BlurWorker>()
         blurBuilder.setInputData(createInputDataForWorkRequest(blurLevel, imageUri))
         // Start the work
-        workManager.enqueue(blurBuilder.build())
+        //workManager.enqueue(blurBuilder.build())
+        continuation = continuation.then(blurBuilder.build())
+        val save = OneTimeWorkRequestBuilder<SaveImageToFileWorker>().build()
+        continuation = continuation.then(save)
+        continuation.enqueue()
     }
 
     /**
