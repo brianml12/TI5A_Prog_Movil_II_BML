@@ -5,7 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.brian_angel.respuestallamada.ui.screens.HomeScreenUI
-import com.brian_angel.respuestallamada.ui.screens.HomeViewModel
+import com.brian_angel.respuestallamada.ui.viewmodels.HomeViewModel
 
 @Composable
 fun AppNavigation(
@@ -14,7 +14,7 @@ fun AppNavigation(
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "home"){
         composable(route = "home") {
-            HomeScreenUI(homeViewModel, navController)
+            HomeScreenUI(homeViewModel)
         }
     }
 }

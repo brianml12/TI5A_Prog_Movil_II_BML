@@ -9,9 +9,10 @@ import android.telephony.TelephonyCallback
 import android.telephony.TelephonyManager
 import android.util.Log
 
-class ReceiverCallsPhone : BroadcastReceiver()
+class ReceiverCallsPhone() : BroadcastReceiver()
 {
     override fun onReceive(ctx: Context, intent: Intent) {
+        var incoming_number = intent.extras!!.getString(TelephonyManager.EXTRA_INCOMING_NUMBER)
         val telephonyManager: TelephonyManager = ctx.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             telephonyManager.registerTelephonyCallback(
@@ -19,8 +20,10 @@ class ReceiverCallsPhone : BroadcastReceiver()
                 object : TelephonyCallback(), TelephonyCallback.CallStateListener {
                     override fun onCallStateChanged(state: Int) {
                         if (state == TelephonyManager.CALL_STATE_RINGING) {
-                            val phoneNumber: String? = intent!!.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER)
-                            Log.e("SI",phoneNumber!!)
+                            if(incoming_number!=null){
+
+                                Log.e("numero_entrante", incoming_number)
+                            }
                         }
                     }
                 })
@@ -28,9 +31,8 @@ class ReceiverCallsPhone : BroadcastReceiver()
             telephonyManager.listen(object : PhoneStateListener() {
                 override fun onCallStateChanged(state: Int, phoneNumbern: String?) {
                     if (state == TelephonyManager.CALL_STATE_RINGING) {
-                        var obtenerNumero = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER)
-                        if (obtenerNumero != null) {
-                            Log.e("obtenerNumero ", obtenerNumero)
+                        if(incoming_number!=null){
+                            Log.e("numero_entrante", incoming_number)
                         }
                     }
                 }
