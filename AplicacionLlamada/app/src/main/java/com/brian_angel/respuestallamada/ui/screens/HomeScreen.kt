@@ -68,9 +68,9 @@ fun contentScaffold(homeViewModel: HomeViewModel){
                     dimensionResource(R.dimen.padding_start_textField),
                     end = dimensionResource(R.dimen.padding_end_textField)
                 ),
-            value = homeViewModel.getPhoneNumer(),
+            value = homeViewModel.obtenerPhoneNumerApp(),
             onValueChange = { value ->
-                homeViewModel.setPhoneNumber(value)
+                homeViewModel.asignaPhoneNumberApp(value)
             },
             label = { Text("Ingresa el numero de telefono") }
         )
@@ -82,9 +82,10 @@ fun contentScaffold(homeViewModel: HomeViewModel){
                     dimensionResource(R.dimen.padding_start_textField),
                     end = dimensionResource(R.dimen.padding_end_textField)
                 ),
-            value = homeViewModel.getMessage(),
+            maxLines = 4,
+            value = homeViewModel.obtieneMessageApp(),
             onValueChange = { value ->
-                homeViewModel.setMessage(value)
+                homeViewModel.asignaMessageApp(value)
             },
             label = { Text("Ingresa el mensaje") }
         )

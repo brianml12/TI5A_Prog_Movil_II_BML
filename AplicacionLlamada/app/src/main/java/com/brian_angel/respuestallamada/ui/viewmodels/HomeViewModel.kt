@@ -10,31 +10,31 @@ import com.brian_angel.respuestallamada.utils.PreferencesUtils
 import com.brian_angel.respuestallamada.utils.ToastUtils
 
 class HomeViewModel(private val ctx: Context) : ViewModel() {
-    private var phoneNumber by mutableStateOf("")
-    private var message by mutableStateOf("")
+    private var phoneNumberApp by mutableStateOf("")
+    private var messageApp by mutableStateOf("")
 
-    fun setPhoneNumber(phoneNumer:String){
-        this.phoneNumber=phoneNumer
+    fun asignaPhoneNumberApp(phoneNumer:String){
+        phoneNumberApp=phoneNumer
     }
 
-    fun getPhoneNumer():String{
-        return this.phoneNumber
+    fun obtenerPhoneNumerApp():String{
+        return phoneNumberApp
     }
 
-    fun setMessage(message:String){
-        this.message=message
+    fun asignaMessageApp(message:String){
+        messageApp=message
     }
 
-    fun getMessage():String{
-        return this.message
+    fun obtieneMessageApp():String{
+        return messageApp
     }
 
     //Funciones para invocacion
 
     fun saveNumberMessage(){
-        if(!this.message.isNullOrEmpty() && !this.phoneNumber.isNullOrEmpty()){
-            PreferencesUtils().saveString(ctx,"phoneNumber","+"+phoneNumber)
-            PreferencesUtils().saveString(ctx,"message",message)
+        if(!this.messageApp.isNullOrEmpty() && !this.phoneNumberApp.isNullOrEmpty()){
+            PreferencesUtils().saveString(ctx,"phoneNumber","+"+phoneNumberApp)
+            PreferencesUtils().saveString(ctx,"message",messageApp)
             ToastUtils().showToastLong(ctx,"Numero y mensaje guadados con exito")
         }else{
             ToastUtils().showToastLong(ctx,"Campos vacios")
