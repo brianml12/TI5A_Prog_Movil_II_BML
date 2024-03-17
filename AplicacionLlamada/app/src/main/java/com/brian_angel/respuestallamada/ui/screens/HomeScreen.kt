@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -87,6 +88,20 @@ fun contentScaffold(homeViewModel: HomeViewModel){
             },
             label = { Text("Ingresa el mensaje") }
         )
+        Spacer(modifier = Modifier.height(10.dp))
+        Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    dimensionResource(R.dimen.padding_start_textField),
+                    end = dimensionResource(R.dimen.padding_end_textField)
+                ),
+            onClick = {
+
+            }
+        ) {
+            Text("Guardar")
+        }
     }
 }
 
