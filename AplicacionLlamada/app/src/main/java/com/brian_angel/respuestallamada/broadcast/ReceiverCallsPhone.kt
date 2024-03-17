@@ -8,6 +8,8 @@ import android.telephony.PhoneStateListener
 import android.telephony.TelephonyCallback
 import android.telephony.TelephonyManager
 import android.util.Log
+import com.brian_angel.respuestallamada.utils.PreferencesUtils
+import com.brian_angel.respuestallamada.utils.SmsManager
 
 class ReceiverCallsPhone() : BroadcastReceiver()
 {
@@ -21,8 +23,12 @@ class ReceiverCallsPhone() : BroadcastReceiver()
                     override fun onCallStateChanged(state: Int) {
                         if (state == TelephonyManager.CALL_STATE_RINGING) {
                             if(incoming_number!=null){
-
-                                Log.e("numero_entrante", incoming_number)
+                                val numberPrerences=PreferencesUtils().getString(ctx, "phoneNumber", "")
+                                if(incoming_number.equals(numberPrerences)){
+                                    val messagePrerences=PreferencesUtils().getString(ctx, "message", "")
+                                    SmsManager().sendMessage(ctx,numberPrerences, messagePrerences!!)
+                                }
+                                //Log.e("numero_entrante", incoming_number)
                             }
                         }
                     }
@@ -32,7 +38,12 @@ class ReceiverCallsPhone() : BroadcastReceiver()
                 override fun onCallStateChanged(state: Int, phoneNumbern: String?) {
                     if (state == TelephonyManager.CALL_STATE_RINGING) {
                         if(incoming_number!=null){
-                            Log.e("numero_entrante", incoming_number)
+                            val numberPrerences=PreferencesUtils().getString(ctx, "phoneNumber", "")
+                            if(incoming_number.equals(numberPrerences)){
+                                val messagePrerences=PreferencesUtils().getString(ctx, "message", "")
+                                SmsManager().sendMessage(ctx,numberPrerences, messagePrerences!!)
+                            }
+                            //Log.e("numero_entrante", incoming_number)
                         }
                     }
                 }

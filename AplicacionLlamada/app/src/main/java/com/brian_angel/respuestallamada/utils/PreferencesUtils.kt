@@ -2,7 +2,7 @@ package com.brian_angel.respuestallamada.utils
 
 import android.content.Context
 
-class PreferenceUtils {
+class PreferencesUtils {
     fun saveString(ctx: Context, key: String, value: String) {
         val sharedPref = ctx.getSharedPreferences("llamadasApp", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()

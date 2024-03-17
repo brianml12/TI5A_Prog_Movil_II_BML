@@ -15,7 +15,7 @@ import com.brian_angel.respuestallamada.ui.viewmodels.HomeViewModelFactory
 class MainActivity : ComponentActivity() {
     private lateinit var homeViewModel : HomeViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
-        homeViewModel = HomeViewModelFactory().create(HomeViewModel::class.java)
+        homeViewModel = HomeViewModelFactory(applicationContext).create(HomeViewModel::class.java)
         super.onCreate(savedInstanceState)
         setContent {
             RespuestaLlamadaTheme {

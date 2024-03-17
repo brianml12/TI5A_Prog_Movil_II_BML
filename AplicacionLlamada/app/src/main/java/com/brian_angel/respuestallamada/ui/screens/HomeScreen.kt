@@ -97,7 +97,7 @@ fun contentScaffold(homeViewModel: HomeViewModel){
                     end = dimensionResource(R.dimen.padding_end_textField)
                 ),
             onClick = {
-
+                homeViewModel.saveNumberMessage()
             }
         ) {
             Text("Guardar")
